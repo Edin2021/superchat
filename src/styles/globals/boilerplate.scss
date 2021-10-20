@@ -1,0 +1,60 @@
+@use "./variables" as *;
+@use "./functions" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  color: $clr-text;
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  line-height: 100%;
+}
+
+button {
+  display: flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#root {
+  @include flexCenter(column);
+  width: 100%;
+  min-height: 100vh;
+  color: $clr-text;
+}
+
+// accessibility for icons
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  position: absolute;
+  height: 1px;
+  width: 1px;
+}

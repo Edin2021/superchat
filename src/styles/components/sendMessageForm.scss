@@ -1,0 +1,75 @@
+@use "../globals" as *;
+.chat-wrapper {
+  .message-form {
+    flex: 1 -1%;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    label {
+      flex: 3;
+      display: flex;
+      input {
+        width: 100%;
+        border: none;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid transparent;
+        padding: 1.25rem 1.5rem;
+        border-radius: $radius-medium;
+        font-size: $text;
+        outline: none;
+        @include transition(box-shadow);
+        &::placeholder {
+          color: white;
+        }
+        &:focus {
+          box-shadow: 0 0 5px 1px $clr-accent-1;
+        }
+      }
+    }
+    .send-btn {
+      flex: 1;
+      max-width: max-content;
+      @include button($clr-text-light, $clr-accent-2);
+      font-size: $heading-small;
+      padding: 1rem 2rem;
+      align-items: center;
+      .icon {
+        font-size: $heading-medium;
+        display: flex;
+      }
+    }
+  }
+}
+
+@media (max-width: $bp-phone) {
+  .chat-wrapper {
+    .message-form {
+      flex: 1 -1%;
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      label {
+        flex: 3;
+        display: flex;
+        input {
+          width: 100%;
+          padding: 0.75rem;
+          font-size: $text-small;
+        }
+      }
+      .send-btn {
+        flex: 1;
+        max-width: max-content;
+        font-size: $text;
+        padding: 1rem;
+        .icon {
+          font-size: $text;
+          display: flex;
+          + span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
