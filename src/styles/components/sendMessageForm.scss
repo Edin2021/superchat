@@ -33,11 +33,63 @@
       font-size: $heading-small;
       padding: 1rem 2rem;
       align-items: center;
+      transition: all 0.3s ease;
+      overflow: hidden;
       .icon {
         font-size: $heading-medium;
         display: flex;
+        position: relative;
+        transition: all 0.3s ease;
+        top: 0;
+        right: 0;
+      }
+      &:focus .icon {
+        animation: flyerAnimate 0.5s forwards 1 ease;
       }
     }
+    .arrow-down-btn {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -170%);
+      font-size: $heading-medium;
+      opacity: 0;
+      z-index: -10;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      &.active {
+        opacity: 1;
+        z-index: 10;
+        transform: translate(-50%, -150%);
+      }
+    }
+  }
+}
+
+@keyframes flyerAnimate {
+  0% {
+    top: 0rem;
+    right: 0rem;
+  }
+  33% {
+    top: -2rem;
+    right: -2rem;
+    opacity: 0;
+    @media (max-width: $bp-phone) {
+      top: -0.5rem;
+      right: -0.5rem;
+    }
+  }
+  66% {
+    opacity: 0;
+    top: 2rem;
+    right: 2rem;
+    @media (max-width: $bp-phone) {
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+  }
+  100% {
+    top: 0;
+    right: 0;
   }
 }
 
@@ -69,6 +121,11 @@
             display: none;
           }
         }
+      }
+      .arrow-down-btn {
+        font-size: $heading-small;
+        padding: 0.5rem;
+        padding-bottom: 0.25rem;
       }
     }
   }

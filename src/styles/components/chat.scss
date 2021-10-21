@@ -79,12 +79,6 @@
       border-radius: $radius-large;
     }
   }
-  .arrow-down-btn {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -150%);
-    font-size: $heading-medium;
-  }
 }
 
 @media (max-width: $bp-phone) {
@@ -109,6 +103,13 @@
       .logout-btn {
         font-size: $heading-xsmall;
       }
+    }
+    .chat {
+      &::-webkit-scrollbar {
+        width: 0rem;
+        margin: 0;
+      }
+      padding: 1rem 2rem;
     }
   }
 }

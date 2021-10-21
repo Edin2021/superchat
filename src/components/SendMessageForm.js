@@ -5,7 +5,7 @@ import { addDoc, serverTimestamp, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import { useState } from "react";
 
-function SendMessageForm({ scrollToBottom }) {
+function SendMessageForm({ scrollToBottom, showArrow }) {
   const [currMessage, setCurrMessage] = useState("");
 
   const { user } = useAuth();
@@ -30,7 +30,11 @@ function SendMessageForm({ scrollToBottom }) {
 
   return (
     <form className="message-form">
-      <button type="button" className="arrow-down-btn" onClick={scrollToBottom}>
+      <button
+        type="button"
+        className={`arrow-down-btn ${showArrow && "active"}`}
+        onClick={scrollToBottom}
+      >
         <span className="visually-hidden">go to last message in chat</span>
         <BsBoxArrowDown />
       </button>

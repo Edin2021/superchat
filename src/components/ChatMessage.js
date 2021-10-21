@@ -13,10 +13,8 @@ function Message({ values }) {
   };
 
   return (
-    <div className={user.uid === message.uid ? "curr-user" : "user"}>
-      <div>
-        <p>{message.text}</p>
-      </div>
+    <article className={user.uid === message.uid ? "curr-user" : "user"}>
+      <div>{message.text}</div>
       {message.photoURL !== checkPhoto(messages, i) && (
         <div className="img-wrapper">
           {message.photoURL ? (
@@ -26,7 +24,7 @@ function Message({ values }) {
           )}
         </div>
       )}
-    </div>
+    </article>
   );
 }
 

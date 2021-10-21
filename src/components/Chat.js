@@ -9,7 +9,10 @@ import SendMessageForm from "./SendMessageForm";
 
 function Chat() {
   const [messages, setMessages] = useState([]);
+  const [scrollHeight, setScrollHeight] = useState(null);
+  const [showArrow, setShowArrow] = useState(false);
   const dummy = useRef(null);
+  const chatRef = useRef(null);
 
   useEffect(() => {
     const messagesRef = collection(db, "messages");
@@ -31,12 +34,23 @@ function Chat() {
 
   useEffect(() => {
     if (messages) {
-      dummy.current.scrollIntoView({ behavior: "smooth" });
+      dummy.current.scrollIntoView();
     }
   }, [messages]);
 
   const scrollToBottom = () => {
     dummy.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    setScrollHeight(chatRef.current.scrollTop);
+  }, [messages]);
+
+  const checkHeight = (e) => {
+    const currScrollHeight = e.target.scrollTop;
+    if (scrollHeight === null) setScrollHeight(e.target.scrollTop);
+    if (currScrollHeight < scrollHeight - 60) setShowArrow(true);
+    else setShowArrow(false);
   };
 
   return (
@@ -49,14 +63,17 @@ function Chat() {
           </h1>
           <Logout />
         </header>
-        <section className="chat">
+        <section className="chat" onScroll={checkHeight} ref={chatRef}>
           {messages.map((message, i) => {
             const values = { messages, message, i };
             return <ChatMessage key={message.id} values={values} />;
           })}
           <span ref={dummy}></span>
         </section>{" "}
-        <SendMessageForm scrollToBottom={scrollToBottom} />
+        <SendMessageForm
+          scrollToBottom={scrollToBottom}
+          showArrow={showArrow}
+        />
       </div>
     </main>
   );
