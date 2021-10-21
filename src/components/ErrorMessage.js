@@ -2,7 +2,7 @@ function ErrorMessage({ error }) {
   return (
     <>
       <div className={`alert-danger ${error && "active"}`}>
-        <p>{error}</p>
+        <p>{error ? error : null}</p>
       </div>
     </>
   );

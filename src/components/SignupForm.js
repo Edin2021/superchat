@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { IoPersonOutline, IoLockClosedOutline } from "react-icons/io5";
@@ -12,6 +13,7 @@ const NAME_REGEX = /^(?:([A-Za-zéàë]{2,40}) ?)+$/;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 function SignupForm() {
+  const [error, setError] = useState(null);
   const validationSchema = yup.object().shape({
     name: yup
       .string()
@@ -42,7 +44,6 @@ function SignupForm() {
   } = useForm(formOptions);
 
   const onSubmit = (data) => {
-    console.log(data);
     const email = data.email;
     const password = data.password;
     if (email && password) {
@@ -53,15 +54,19 @@ function SignupForm() {
           });
         })
         .catch((err) => {
-          console.log(err);
+          setError("User already exists");
         });
     }
   };
 
+  const removeError = () => {
+    if (error) setError("");
+  };
+
   return (
     <>
-      <ErrorMessage />
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <ErrorMessage error={error} />
+      <form onSubmit={handleSubmit(onSubmit)} onClick={removeError} noValidate>
         <h1>Sign Up</h1>
         <label>
           <span className="visually-hidden"> name</span>

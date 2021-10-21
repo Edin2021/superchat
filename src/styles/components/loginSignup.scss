@@ -85,10 +85,7 @@
     display: flex;
     color: $clr-text-light;
     font-size: $text-small;
-    position: absolute;
-    left: 50%;
-    bottom: 2.5rem;
-    transform: translateX(-50%);
+    margin-top: 2rem;
     button {
       color: $clr-accent-1;
       font-size: $text-small;

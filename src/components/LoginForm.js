@@ -22,7 +22,6 @@ function LoginForm() {
     const password = data.password;
     if (email && password && !serverError) {
       signInWithEmailAndPassword(auth, email, password).catch((err) => {
-        console.log(err);
         setServerError("no password/email combination was found");
       });
     }
@@ -31,7 +30,6 @@ function LoginForm() {
   useEffect(() => {
     let timeout;
     if (serverError && timeout === undefined) {
-      console.log("set the timeout for the message");
       timeout = setTimeout(() => {
         setServerError("");
         clearTimeout(timeout);
