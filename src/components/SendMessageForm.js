@@ -3,15 +3,26 @@ import { FiSend } from "react-icons/fi";
 import { useAuth } from "../contexts/AuthContext";
 import { addDoc, serverTimestamp, collection } from "firebase/firestore";
 import { db } from "../firebase";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function SendMessageForm({ scrollToBottom, showArrow }) {
   const [currMessage, setCurrMessage] = useState("");
 
   const { user } = useAuth();
 
+  const inputRef = useRef();
+
   const handleMessage = async (e) => {
     e.preventDefault();
+    const sendBtn = e.currentTarget;
+    if (!sendBtn.classList.contains("animate-icon")) {
+      sendBtn.classList.add("animate-icon");
+      setTimeout(() => {
+        sendBtn.classList.remove("animate-icon");
+      }, 1000);
+    }
+
+    inputRef.current.focus();
     if (currMessage) {
       const collectionRef = collection(db, "messages");
       const payload = {
@@ -43,6 +54,7 @@ function SendMessageForm({ scrollToBottom, showArrow }) {
         <input
           type="text"
           value={currMessage}
+          ref={inputRef}
           onChange={(e) => {
             if (e.target.value.length < 1000) {
               setCurrMessage(e.target.value);

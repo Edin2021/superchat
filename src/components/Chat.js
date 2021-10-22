@@ -42,14 +42,22 @@ function Chat() {
     dummy.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  const reportSize = () => {
+    dummy.current.scrollIntoView();
+    setScrollHeight(chatRef.current.scrollTop);
+    checkHeight();
+  };
+
   useEffect(() => {
     setScrollHeight(chatRef.current.scrollTop);
+    window.addEventListener("resize", reportSize);
+    return () => window.removeEventListener("resize", reportSize);
   }, [messages]);
 
-  const checkHeight = (e) => {
-    const currScrollHeight = e.target.scrollTop;
-    if (scrollHeight === null) setScrollHeight(e.target.scrollTop);
-    if (currScrollHeight < scrollHeight - 60) setShowArrow(true);
+  const checkHeight = () => {
+    const currScrollHeight = chatRef.current.scrollTop;
+    if (scrollHeight === null) setScrollHeight(currScrollHeight);
+    if (currScrollHeight < scrollHeight - 200) setShowArrow(true);
     else setShowArrow(false);
   };
 

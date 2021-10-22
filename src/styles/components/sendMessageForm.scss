@@ -43,7 +43,7 @@
         top: 0;
         right: 0;
       }
-      &:focus .icon {
+      &.animate-icon .icon {
         animation: flyerAnimate 0.5s forwards 1 ease;
       }
     }
