@@ -73,19 +73,11 @@
     top: -2rem;
     right: -2rem;
     opacity: 0;
-    @media (max-width: $bp-phone) {
-      top: -0.5rem;
-      right: -0.5rem;
-    }
   }
   66% {
     opacity: 0;
     top: 2rem;
     right: 2rem;
-    @media (max-width: $bp-phone) {
-      top: 0.5rem;
-      right: 0.5rem;
-    }
   }
   100% {
     top: 0;

@@ -9,7 +9,7 @@ function Login() {
   const [currForm, setCurrForm] = useState("signup");
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
+    signInWithRedirect(auth, provider).catch((err) => {});
   };
 
   const changeForm = () => {

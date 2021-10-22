@@ -14,7 +14,10 @@ function Message({ values }) {
 
   return (
     <article className={user.uid === message.uid ? "curr-user" : "user"}>
-      <div>{message.text}</div>
+      <div>
+        <span className="visually-hidden">{message.userName}</span>
+        {message.text}
+      </div>
       {message.photoURL !== checkPhoto(messages, i) && (
         <div className="img-wrapper">
           {message.photoURL ? (
