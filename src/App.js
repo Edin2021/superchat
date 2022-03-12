@@ -8,17 +8,16 @@ import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
-    <></>
-//     <>
-//       <Router>
-//         <AuthProvider>
-//           <Switch>
-//             <PrivateRoute path="/chat" component={Chat} />
-//             <Route exact path="/" component={Login} />
-//           </Switch>
-//         </AuthProvider>
-//       </Router>
-//     </>
+    <>
+      <Router>
+        <AuthProvider>
+          <Switch>
+            <PrivateRoute path="/chat" component={Chat} />
+            <Route exact path="/" component={Login} />
+          </Switch>
+        </AuthProvider>
+      </Router>
+    </>
   );
 }
 
