@@ -23,7 +23,7 @@ function SendMessageForm({ scrollToBottom, showArrow }) {
     }
 
     inputRef.current.focus();
-    if (currMessage) {
+    if (currMessage.trim()) {
       const collectionRef = collection(db, "messages");
       const payload = {
         uid: user.uid,
